@@ -53,6 +53,7 @@ function gameOver() {
             gBoard[i][j].isShown = true
         }
     }
+    clearInterval(gGame.stopwatchInt);
 
 }
 
@@ -101,5 +102,7 @@ function checkIfVictory() {
 }
 
 function gameWon() {
+    clearInterval(gGame.stopwatchInt);
+
     alert('congrats youve won!')
 }

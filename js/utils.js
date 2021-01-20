@@ -11,12 +11,10 @@ function runStopwatch() {
         var finalTime = (new Date() - gGame.stopwatchStartTime) / 1000
         localStorage.setItem("highscore", finalTime);
         clearInterval(gGame.stopwatchInt);
-        
     }
     var currTime = (new Date() - gGame.stopwatchStartTime) / 1000
     var stopwatchEl = document.querySelector('.stopwatch-container');
     stopwatchEl.innerText = `Score: ${currTime}`
-
     // if (gHighScore > time) gHighScore = time
     // localStorage.setItem("highscore", time);
 
