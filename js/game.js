@@ -96,8 +96,10 @@ for (var i = 0 ; i <gBoard.length; i++) {
         if(currCell.isMine && currCell.isMarked)  flaggedMines.push(currCell)
     }
 }
-if (flaggedMines.length === gLevel.mines && ShownCellsCount === gLevel.size**2-gLevel.mines) {console.log('victory');}
-    return true
+if (flaggedMines.length === gLevel.mines && ShownCellsCount === gLevel.size**2-gLevel.mines) {console.log('victory');
+return true
+}
+return false
 }
 
 function gameWon() { 
