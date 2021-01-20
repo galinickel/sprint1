@@ -1,21 +1,15 @@
-/*
-creating the board:
-allow for different size boards through the parameter passed in.
-
-setting the mines in random locations: will be fixed for testing
-
-count the mines' neighbors 
-
-return the board.
-
-*/
-
 var gBoard;
 var gLevel = {
     size: 4,
     mines: 2,
-    gameOn: true,
-    flagCount: 0
+
+}
+
+var gGame = {
+    gameOn: false,
+    flagCount: 0,
+    stopwatchStartTime: 0,
+    stopwatchInt: null
 }
 
 var gBoard;
@@ -35,50 +29,54 @@ function difficultyLevelPicker(difficultyLevel) {
             gLevel.mines = 30
             break;
     }
+    clearInterval(gGame.stopwatchInt);
+    gGame.stopwatchInt = null;
+    var stopwatchEl = document.querySelector('.stopwatch-container');
+    stopwatchEl.innerText = `Score: 0:000`
     gBoard = (buildBoard(gLevel.size, gLevel.mines))
-    gLevel.flagCount = 0
-    setMinesNegsCount(gBoard)
+    gGame.flagCount = 0
     renderBoard(gBoard)
-    gLevel.gameOn = true
+    gGame.gameOn = false
 
 }
 
 function init() {
     gBoard = (buildBoard(gLevel.size, gLevel.mines))
-    setMinesNegsCount(gBoard)
     renderBoard(gBoard)
-    console.log(gBoard);
-    gLevel.gameOn = true
-    gLevel.flagCount = 0
+    gGame.flagCount = 0
 }
 
 function gameOver() {
-    gLevel.gameOn = false;
+    gGame.gameOn = false;
     for (var i = 0; i < gBoard.length; i++) {
         for (var j = 0; j < gBoard[0].length; j++) {
             gBoard[i][j].isShown = true
         }
     }
+
 }
 
-function cellClicked(positionI, poisitionJ, elCell) {
+function cellClicked(positionI, poisitionJ) {
+    if (!gGame.gameOn) firstUserClickHanlder()
     var currCell = gBoard[positionI][poisitionJ]
+    if (currCell.isMine) gameOver()
     if (currCell.isMarked) return
     currCell.isShown = true
-    var checkVictory = checkIfVictory()
-    if (checkVictory) {gameWon();
-        return}
-    if (gBoard[positionI][poisitionJ].isMine) gameOver()
     renderBoard(gBoard)
+    if (checkIfVictory()) {
+        gameWon();
+        return
+    }
 }
 
 function cellRightClicked(positionI, poisitionJ) {
+    if (!gGame.gameOn) firstUserClickHanlder()
     document.addEventListener('contextmenu', event => event.preventDefault());
     var currCell = gBoard[positionI][poisitionJ]
-    var checkVictory = checkIfVictory()
-    if (checkVictory) {gameWon();
-        return}
-    else if (!currCell.isMarked) currCell.isMarked = true;
+    if (checkIfVictory()) {
+        gameWon();
+        return
+    } else if (!currCell.isMarked) currCell.isMarked = true;
     else {
         currCell.isMarked = false
     }
@@ -87,21 +85,21 @@ function cellRightClicked(positionI, poisitionJ) {
 
 function checkIfVictory() {
     //check if all mines are flagged
-var flaggedMines = []
-var ShownCellsCount = 0
-for (var i = 0 ; i <gBoard.length; i++) { 
-    for (var j = 0 ; j < gBoard[0].length; j++) { 
-        var currCell = gBoard[i][j]
-        if (currCell.isShown) ShownCellsCount++
-        if(currCell.isMine && currCell.isMarked)  flaggedMines.push(currCell)
+    var flaggedMines = []
+    var ShownCellsCount = 0
+    for (var i = 0; i < gBoard.length; i++) {
+        for (var j = 0; j < gBoard[0].length; j++) {
+            var currCell = gBoard[i][j]
+            if (currCell.isShown) ShownCellsCount++
+            if (currCell.isMine && currCell.isMarked) flaggedMines.push(currCell)
+        }
     }
-}
-if (flaggedMines.length === gLevel.mines && ShownCellsCount === gLevel.size**2-gLevel.mines) {console.log('victory');
-return true
-}
-return false
+    if (flaggedMines.length === gLevel.mines && ShownCellsCount === gLevel.size ** 2 - gLevel.mines) {
+        return true
+    }
+    return false
 }
 
-function gameWon() { 
+function gameWon() {
     alert('congrats youve won!')
 }

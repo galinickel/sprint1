@@ -49,13 +49,14 @@ function countNegs(cellI, cellJ, board) {
 function buildBoard(level, mines) {
     var board = createMat(level)
     var i = 0
-    while (i < mines) {
+    if (gGame.gameOn) {
+    while (i < mines ) {
         var currCell = board[getRandomInt(0, level - 1)][getRandomInt(0, level - 1)]
         if (currCell.isMine) continue
         else currCell.isMine = true;
-    
         i++
     }
+}
     return board
 }
 
@@ -66,10 +67,11 @@ function renderBoard(board) {
         strHtml += '<tr>'
         for (var j = 0; j < board[0].length; j++) {
             var cell = board[i][j];
-            if (cell.isMarked)  strHtml +=` <td class="cell cell${cell.position.i},${cell.position.j}"  onclick="cellClicked(${i},${j},this)" oncontextmenu="cellRightClicked(${i},${j})">🚩</td>`
-            else if (cell.isShown && cell.isMine) strHtml += ` <td class="cell cell${cell.position.i},${cell.position.j}, mine"  onclick="cellClicked(${i},${j},this)">💣</td>`
-            else if (!cell.isShown) strHtml += ` <td class="cell cell${cell.position.i},${cell.position.j}"  onclick="cellClicked(${i},${j},this)" oncontextmenu="cellRightClicked(${i},${j})"> </td>`
-            else if (!cell.isMine && cell.isShown) strHtml += ` <td class="cell cell${cell.position.i},${cell.position.j}, picked" onclick="cellClicked(${i},${j},this)">${cell.minesAroundCount}</td>`
+            if (cell.isMarked)  strHtml +=` <td class="cell cell${cell.position.i},${cell.position.j} marked"  onclick="cellClicked(${i},${j})" oncontextmenu="cellRightClicked(${i},${j})">🏁</td>`
+            // else if (!cell.minesAroundCount)
+            else if (cell.isShown && cell.isMine) strHtml += ` <td class="cell cell${cell.position.i},${cell.position.j}, mine"  onclick="cellClicked(${i},${j})">💣</td>`
+            else if (!cell.isShown) strHtml += ` <td class="cell cell${cell.position.i},${cell.position.j}"  onclick="cellClicked(${i},${j})" oncontextmenu="cellRightClicked(${i},${j})"> </td>`
+            else if (!cell.isMine && cell.isShown) strHtml += ` <td class="cell cell${cell.position.i},${cell.position.j}, picked" onclick="cellClicked(${i},${j})">${cell.minesAroundCount}</td>`
         
         }
         strHtml += '</tr>'
@@ -77,8 +79,4 @@ function renderBoard(board) {
     strHtml += '</table>'
     var elBoard = document.querySelector('.game-container');
     elBoard.innerHTML = strHtml;
-}
-
-function getRandomInt(min, max) {
-    return min + Math.floor(Math.random() * (max - min + 1));
 }

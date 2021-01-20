@@ -3,19 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <title>Minesweeper</title>
 </head>
 <body onload ="init()">
+    <div class="body-container">
+        <h1>It's Minesweeper O'clock!</h1>
+        <div class="emoji-container"></div>
+    <div class="stopwatch-container">Time: 0:000</div>
     <div class="level-container">
-        <button class="easy" onclick="difficultyLevelPicker('easy')">Easy</button>
-        <button class="medium" onclick="difficultyLevelPicker('medium')">Medium</button>
-        <button class="hard" onclick="difficultyLevelPicker('hard')">Hard</button>
+        <button class="btn easy" onclick="difficultyLevelPicker('easy')">Easy</button>
+        <button class="btn medium" onclick="difficultyLevelPicker('medium')">Medium</button>
+        <button class="btn hard" onclick="difficultyLevelPicker('hard')">Hard</button>
     </div>
     <div class="game-container">
 
 
     </div>
+</div>
+    <script src="js/utils.js"></script>
     <script src="js/board.js"></script>
     <script src="js/game.js"></script>
     

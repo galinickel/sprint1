@@ -1,20 +1,96 @@
-table td { 
-    width: 40px;
-    height: 40px;
-    border: 1px solid black;
+* {
+    box-sizing: border-box;
+    
+
+}
+
+body {
+    background: #7E8987;
+
+}
+
+.btn { 
+	box-shadow: 3px 4px 0px 0px #7e8987;
+	background:linear-gradient(to bottom, #a7c4b5 5%, #7e8987 100%);
+	background-color:#a7c4b5;
+	border-radius:5px;
+	border:1px solid #4B4A67;
+	display:inline-block;
+	cursor:pointer;
+    color: #DDD1C7;
+	font-family:Arial;
+	font-size:17px;
+	font-weight:bold;
+	padding:8px 32px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px#4B4A67;
+}
+
+.btn:active{ 
+	position:relative;
+	top:1px;
+}
+
+.btn:hover { 
+    background:linear-gradient(to bottom, #7e8987 5%, #a7c4b5 100%);
+	background-color:#7e8987;
+}
+
+.body-container {
+    background-color: #4B4A67;
+    height: 95%;
+    position: absolute;
+    text-align: center;
+    width: 50%;
+    margin: 1% ;
+    margin-left: 25%;
+    padding: 2% 0;
+}
+h1 { 
+    font-family: 'Lobster', cursive;
+font-size: 48px;
+color: #DDD1C7;
+text-shadow: -1px -1px 1px rgba(255,255,255,.1), 1px 1px 1px rgba(0,0,0,.5);
+transition: all .3s ease;
+}
+h1:hover { 
+    text-shadow: -3px -3px 3px rgba(255,255,255,.5), 1px 1px 1px rgba(0,0,0,.5);
+
+}
+
+table {
+    padding-top: 5%;
+    margin: auto;
+
+
+}
+
+table td {
+    width: 45px;
+    height: 45px;
+    border: 2px outset #a7c4b5;
     text-align: center;
     transition: all .2s ease;
+    background: linear-gradient(to top, #4B4A67 0%,rgba(0,0,0,0) 70%);
 }
-table td:hover{
-    background-color: wheat;
+
+table td:hover {
+    box-shadow:0px 0px  14px  rgba(255,255,255,.85), 1px 1px 1px rgba(0,0,0,.5);
 }
-table td:active{
+
+table td:active {
     background-color: red;
-    
+    position:relative;
+	top:1px;
+
 }
-table .picked { 
-    background: yellow;
+
+table .picked {
+    background: #a7c4b5;
 }
-table .mine { 
-    background: red;
+table .marked {
+    background: #7e8987;
+}
+table .mine {
+    background: moccasin;
 }
