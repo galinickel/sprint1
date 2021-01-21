@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,24 +8,34 @@
     <link rel="stylesheet" href="css/style.css">
     <title>Minesweeper</title>
 </head>
-<body onload ="init()">
+<body onload="init()">
     <div class="body-container">
         <h1>It's Minesweeper O'clock!</h1>
-        <div class="emoji-container"></div>
-    <div class="stopwatch-container">Time: 0:000</div>
-    <div class="level-container">
-        <button class="btn easy" onclick="difficultyLevelPicker('easy')">Easy</button>
-        <button class="btn medium" onclick="difficultyLevelPicker('medium')">Medium</button>
-        <button class="btn hard" onclick="difficultyLevelPicker('hard')">Hard</button>
+        
+        <div class="emoji-container" onclick="init()"> </div>
+        <div class="life-container">🎈🎈🎈</div>
+        <div class="stopwatch-container">Time: <span>0:000</span></div>
+        <div class="level-container">
+            <button class="btn easy" onclick="difficultyLevelPicker('easy')">Easy</button>
+            <button class="btn medium" onclick="difficultyLevelPicker('medium')">Medium</button>
+            <button class="btn hard" onclick="difficultyLevelPicker('hard')">Hard</button>
+            <br>
+        </div>
+        <div class="game-container">
+        </div>
     </div>
-    <div class="game-container">
-
-
+    <div class="hint-container">
+        <button class="btn">Hint</button>
+        <span class="hint-span">3 Left</span>
     </div>
-</div>
+    <div class="safe-container">
+        <button class="btn" onclick="countSafeClicks(gBoard)">Safe Click</button>
+        <span class="safe-span">3 Left</span>
+    </div>
     <script src="js/utils.js"></script>
     <script src="js/board.js"></script>
     <script src="js/game.js"></script>
-    
+
 </body>
+
 </html>
