@@ -4,14 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <title>Minesweeper</title>
 </head>
+
 <body onload="init()">
     <div class="body-container">
         <h1>It's Minesweeper O'clock!</h1>
-        
+
         <div class="emoji-container" onclick="init()"> </div>
         <div class="life-container">🎈🎈🎈</div>
         <div class="stopwatch-container">Time: <span>0:000</span></div>
@@ -24,13 +26,42 @@
         <div class="game-container">
         </div>
     </div>
-    <div class="hint-container">
-        <button class="btn">Hint</button>
-        <span class="hint-span">3 Left</span>
+    <div class="hint-container" onclick="hintModeToggle()">
+        <button class="btn hint-btn">Hint <span>💡</span></button>
+        <span class="hint-span">3 </span> Left
     </div>
     <div class="safe-container">
         <button class="btn" onclick="countSafeClicks(gBoard)">Safe Click</button>
         <span class="safe-span">3 Left</span>
+    </div>
+    <div class="instructions-container"><span>
+            <H2>Welcome to Minesweeper!</H2>
+            <p>Welcome to Minesweeper!</p>
+            <p>You may choose one of the three difficulty levels and test your skills!</p>
+            <p><br></p>
+        </span>
+        <p>Instructions:</p>
+        <ul>
+            <li>In order to win the game, you must flag all the mines on the board and reveal every single cell that
+                isn&apos;t a mine.</li>
+            <li>If you step on a mine, you lose a life. Your lives are represented by the red balloons above the board.
+            </li>
+            <li>In order to flag cells, click them with your right mouse-button. You can undo the process by clicking
+                them with your right mouse-button a second time.</li>
+        </ul>
+        <p>Helpful Tools:</p>
+        <ul>
+            <li>A hint system is available. It will show the chosen cell&apos;s neighbors for a limited time so you can
+                plan your next move.</li>
+            <li>A safe-click system is available. It will show you a place on the board that is guaranteed to be free of
+                mines.</li>
+            <li>Please note that these special tools are of limited use! You can track your usage of them in the upper
+                left corner of the screen.</li>
+        </ul>
+        <p><br></p>
+        <span>
+            <p>Don&apos;t forget to have fun!</p>
+        </span>
     </div>
     <script src="js/utils.js"></script>
     <script src="js/board.js"></script>
